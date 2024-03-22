@@ -1,16 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
+
 
 import Button from "../components/Button";
 
 const Welcome = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Image source={require('../assets/Fondo.png')} style={styles.img} />
       <View style={styles.overlay}>
         <Text style={styles.text}>Bienvenido</Text>
         <Text style={styles.subText}>Enciende tu experiencia con VisageVerify</Text>
-        <Button title={'Empezar aquí'} onPress={() => console.log('Empezar')} />
+        <Button title={'Empezar aquí'} onPress={() => navigation.navigate('Camara')}
+        />
       </View>
     </View>
   )
@@ -32,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo oscuro semi-transparente
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Fondo oscuro semi-transparente
   },
   text: {
     fontSize: 36,

@@ -1,9 +1,7 @@
 import React from "react";
-import Inicio from "./src/page/Welcome"
-
+import Navigation from "./src/Navigate";
 export default function App() {
   return (
-    <Inicio/>
-    
+    <Navigation/>
   );
 }
