@@ -1,8 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { Camera } from 'expo-camera';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+
+
+const { width, height } = Dimensions.get('window');
 
 const Camara = () => {
+  const navigation = useNavigation();
+
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.front); // Tipo de cámara: front (frontal)
   const cameraRef = useRef(null);
@@ -30,9 +38,15 @@ const Camara = () => {
       />
 
       <View style={styles.topBar}>
+        <TouchableOpacity style={styles.close} onPress={() => navigation.navigate('Home')} >
+          <AntDesign name="close" size={34} color="white" />
+
+        </TouchableOpacity>
+
       </View>
 
       <View style={styles.bottomBar}>
+        <Text style={styles.txt} >Karla</Text>
       </View>
     </View>
   );
@@ -45,26 +59,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   camarast: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 0,
+    width: width * 1,
+    height: height * 0.69,
+    borderRadius: 15,
+    overflow: 'hidden',
   },
-  
+
+  close: {
+    width:'90%',
+    justifyContent:'center',
+    marginLeft:10
+  },
+
   topBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    padding: 50,
+    height: '17%',
+    width:'100%',
     backgroundColor: 'black',
     zIndex: 1,
+    justifyContent:'center',
   },
-  
+
   bottomBar: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -73,10 +91,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    padding: 70,
+    padding: 68,
     backgroundColor: 'black',
     zIndex: 1,
   },
+  txt: {
+    color: 'white'
+  }
 });
 
 export default Camara;
